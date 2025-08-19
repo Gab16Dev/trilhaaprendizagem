@@ -2,7 +2,7 @@
 class GameState {
   constructor() {
     this.currentPosition = 1;
-    this.totalHouses = 30;
+    this.totalHouses = 50;
     this.isGameActive = false;
     this.canRollDice = true;
     this.skipNextTurn = false;
@@ -131,37 +131,16 @@ class FiguresOfSpeechGame {
     const special = {};
     const totalHouses = this.gameState.totalHouses;
     
-    // Generate tip houses (dica) - about 20% of houses
-    const tipCount = Math.floor(totalHouses * 0.2);
-    const tipHouses = [];
-    while (tipHouses.length < tipCount) {
-      const house = Math.floor(Math.random() * (totalHouses - 2)) + 2; // Avoid house 1 and last house
-      if (!tipHouses.includes(house)) {
-        tipHouses.push(house);
-      }
-    }
+    // Generate tip houses (dica) - 6 casas distribuídas
+    const tipHouses = [8, 15, 22, 30, 37, 44];
     tipHouses.forEach(house => special[house] = 'dica');
     
-    // Generate extra challenge houses - about 15% of houses
-    const extraCount = Math.floor(totalHouses * 0.15);
-    const extraHouses = [];
-    while (extraHouses.length < extraCount) {
-      const house = Math.floor(Math.random() * (totalHouses - 2)) + 2;
-      if (!tipHouses.includes(house) && !extraHouses.includes(house)) {
-        extraHouses.push(house);
-      }
-    }
+    // Generate extra challenge houses - 4 casas
+    const extraHouses = [12, 25, 33, 41];
     extraHouses.forEach(house => special[house] = 'extra');
     
-    // Generate lose turn houses - about 10% of houses
-    const loseCount = Math.floor(totalHouses * 0.1);
-    const loseHouses = [];
-    while (loseHouses.length < loseCount) {
-      const house = Math.floor(Math.random() * (totalHouses - 5)) + 3; // Avoid early houses
-      if (!tipHouses.includes(house) && !extraHouses.includes(house) && !loseHouses.includes(house)) {
-        loseHouses.push(house);
-      }
-    }
+    // Generate lose turn houses - 3 casas
+    const loseHouses = [18, 28, 38];
     loseHouses.forEach(house => special[house] = 'perde');
     
     return special;

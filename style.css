@@ -254,9 +254,9 @@ body {
 
 .trail-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.5rem;
-  max-width: 600px;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.4rem;
+  max-width: 800px;
   margin: 0 auto;
 }
 
